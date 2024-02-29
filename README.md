@@ -1,17 +1,47 @@
-# Typescript Template
+# node-kmbox
 
-This is a template for a typescript project. It includes a basic setup.
+## Introduction
 
-## Scripts
+This is a simple node.js module to interact with the KMBox B Pro with base64 encoding.
 
-### build
+## Example Usage
 
-Builds the project.
+```ts
+import KMBox from "node-kmbox";
+import { SerialPort } from "serialport";
 
-### start
+async function main(pth: string) {
+  const nse = new SerialPort({
+    path: pth,
+    baudRate: 115200,
+  });
 
-Starts the project.
+  nse.on("data", (e) => {
+    process.stdout.write(e);
+  });
+  nse.on("resume", () => {
+    console.log("Resume");
+  });
+  nse.open(async () => {
+    console.log("Opened");
+    const box = new KMBox(nse);
+    await box.initlize();
+    box.send(`km.move(100, 100, 10)`).then((msg: string) => {
+      console.log(msg);
+    });
+  });
+  process.stdin.on("data", (e) => {
+    e = Buffer.from(e.toString().replace(/\n/g, "\r\n"));
+    nse.write(e);
+  });
+}
 
-### watch
+async function seriallist() {
+  SerialPort.list().then((ports) => {
+    console.log(ports);
+  });
+}
 
-Watches the project and rebuilds on changes. (powered by `nodemon`)
+// seriallist();
+main("/dev/tty.usbserial-11110");
+```
