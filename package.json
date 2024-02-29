@@ -1,7 +1,7 @@
 {
-  "name": "@oein/ts-template",
+  "name": "node-kmbox",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.6.3",
@@ -11,5 +11,21 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "watch": "nodemon --ext ts,mts,js,json --watch src/**/* --exec 'npm run build && npm start'"
-  }
+  },
+  "dependencies": {
+    "serialport": "^12.0.0"
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "kmboxcommand.json",
+    "package.json",
+    "package-lock.json",
+    "README.md",
+    "tsconfig.json",
+    "LICENSE",
+    ".npmignore",
+    ".gitignore",
+    "yarn.lock"
+  ]
 }

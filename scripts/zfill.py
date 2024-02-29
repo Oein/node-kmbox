@@ -1,0 +1,1 @@
+def nkb4(s,w):return s if len(s)>=w else'0'*(w-len(s))+s
