@@ -1,6 +1,6 @@
 {
   "name": "node-kmbox",
-  "version": "1.0.0-r1",
+  "version": "1.0.0-t2",
   "main": "dist/index.js",
   "license": "MIT",
   "devDependencies": {
