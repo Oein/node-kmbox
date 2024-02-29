@@ -10,6 +10,7 @@
     "skipLibCheck": true,
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "declaration": true
   }
 }
